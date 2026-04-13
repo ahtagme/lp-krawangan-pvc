@@ -78,17 +78,30 @@ tailwind.config = {
   @keyframes progressFill { 0% { width: 0; } }
 
   .ooef { min-height: 100px; }
+
+  @media (max-width: 640px) {
+    .notification-popup { left: 8px !important; right: 8px !important; max-width: none !important; bottom: 70px !important; }
+    .sticky-cta.show + .notification-popup.show, .notification-popup { bottom: 70px !important; }
+    .benefit-card { padding: 12px !important; }
+    .benefit-card h3 { font-size: 12px; }
+    .benefit-card p { font-size: 11px; }
+  }
+
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .sticky-cta > div { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  }
 </style>
 </head>
 <body>
 
 <!-- ========== 1. URGENCY TOP BAR ========== -->
-<div class="bg-gradient-to-r from-red-700 via-red-600 to-orange-600 py-2 px-4 text-center text-sm md:text-base font-bold sticky top-0 z-50 shadow-lg">
-  <div class="max-w-4xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+<div class="bg-gradient-to-r from-red-700 via-red-600 to-orange-600 py-1.5 sm:py-2 px-3 sm:px-4 text-center text-xs sm:text-sm md:text-base font-bold sticky top-0 z-50 shadow-lg">
+  <div class="max-w-4xl mx-auto flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
     <span class="fire-emoji">🔥</span>
     <span>PROMO TERBATAS!</span>
-    <span class="bg-white text-red-600 px-3 py-0.5 rounded-full text-xs md:text-sm font-black" id="countdown">02:59:59</span>
-    <span>Diskon BERAKHIR &mdash; Harga naik setelah waktu habis!</span>
+    <span class="bg-white text-red-600 px-2 sm:px-3 py-0.5 rounded-full text-[10px] sm:text-xs md:text-sm font-black" id="countdown">02:59:59</span>
+    <span class="hidden sm:inline">Diskon BERAKHIR &mdash; Harga naik setelah waktu habis!</span>
+    <span class="sm:hidden">Harga naik setelah ini!</span>
     <span class="fire-emoji">🔥</span>
   </div>
 </div>
@@ -120,92 +133,92 @@ tailwind.config = {
 </div>
 
 <!-- ========== 3. HERO + FOTO PRODUK ========== -->
-<section class="relative py-10 md:py-16 px-4 overflow-hidden">
+<section class="relative py-6 sm:py-10 md:py-16 px-4 overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-b from-orange-950/30 via-transparent to-transparent"></div>
   <div class="max-w-5xl mx-auto relative z-10">
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      <!-- Left: Copy -->
+    <div class="grid md:grid-cols-2 gap-5 sm:gap-8 items-center">
+      <!-- Hero Image - show first on mobile -->
+      <div class="fade-up order-first md:order-last">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/20 border border-dark-border">
+          <img src="img/interior-1.png" alt="Ruang tamu mewah dengan Krawangan PVC Board Premium" class="w-full h-auto" loading="eager">
+        </div>
+      </div>
+      <!-- Copy -->
       <div class="text-center md:text-left">
-        <div class="inline-block bg-red-600/20 border border-red-500/40 rounded-full px-4 py-1 text-red-400 text-sm font-semibold mb-5 fade-up">
+        <div class="inline-block bg-red-600/20 border border-red-500/40 rounded-full px-3 sm:px-4 py-1 text-red-400 text-xs sm:text-sm font-semibold mb-3 sm:mb-5 fade-up">
           ⚠️ PERINGATAN: Ini Bukan Dekor Biasa
         </div>
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-5 fade-up">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-3 sm:mb-5 fade-up">
           DINDING KOSONG =<br>
           <span class="text-brand glow-orange">RUMAH KELIATAN MURAHAN</span>
         </h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-3 fade-up font-semibold">
+        <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-2 sm:mb-3 fade-up font-semibold">
           Ini solusi <span class="text-brand font-black">TERMURAH</span> buat bikin rumah kelihatan
           <span class="text-gold glow-gold font-black">MAHAL DALAM 5 MENIT!</span>
         </p>
-        <p class="text-base text-gray-400 mb-6 fade-up">
+        <p class="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 fade-up">
           Krawangan PVC Board Premium &mdash; Tampilan mewah, harga merakyat, pasang sendiri.
         </p>
-        <div class="fade-up mb-6">
-          <a href="#order" class="pulse-cta inline-block bg-gradient-to-r from-brand to-red-500 text-white font-black text-lg px-8 py-4 rounded-xl shadow-2xl hover:brightness-110 transition w-full sm:w-auto text-center">
+        <div class="fade-up mb-4 sm:mb-6">
+          <a href="#order" class="pulse-cta inline-block bg-gradient-to-r from-brand to-red-500 text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl hover:brightness-110 transition w-full sm:w-auto text-center">
             🛒 BELI SEKARANG - SEBELUM KEHABISAN
           </a>
         </div>
-        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-gray-400 fade-up">
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400 fade-up">
           <span class="flex items-center gap-1"><span class="text-green-400">✅</span> COD</span>
           <span class="flex items-center gap-1"><span class="text-green-400">✅</span> Garansi 100%</span>
           <span class="flex items-center gap-1"><span class="text-green-400">✅</span> Gratis Ongkir*</span>
         </div>
       </div>
-      <!-- Right: Hero Image -->
-      <div class="fade-up">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/20 border border-dark-border">
-          <img src="img/interior-1.png" alt="Ruang tamu mewah dengan Krawangan PVC Board Premium" class="w-full h-auto" loading="eager">
-        </div>
-      </div>
     </div>
 
     <!-- Live Stats -->
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-6 md:gap-10 fade-up">
+    <div class="mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-5 sm:gap-6 md:gap-10 fade-up">
       <div class="text-center">
-        <div class="text-2xl md:text-4xl font-black text-brand" id="counterSold">12,847</div>
-        <div class="text-xs md:text-sm text-gray-500 mt-1">Unit Terjual</div>
+        <div class="text-xl sm:text-2xl md:text-4xl font-black text-brand" id="counterSold">12,847</div>
+        <div class="text-[10px] sm:text-xs md:text-sm text-gray-500 mt-1">Unit Terjual</div>
       </div>
-      <div class="w-px h-10 bg-dark-border hidden md:block"></div>
+      <div class="w-px h-8 sm:h-10 bg-dark-border"></div>
       <div class="text-center">
-        <div class="text-2xl md:text-4xl font-black text-gold">4.9<span class="text-lg">★</span></div>
-        <div class="text-xs md:text-sm text-gray-500 mt-1">Rating Customer</div>
+        <div class="text-xl sm:text-2xl md:text-4xl font-black text-gold">4.9<span class="text-sm sm:text-lg">★</span></div>
+        <div class="text-[10px] sm:text-xs md:text-sm text-gray-500 mt-1">Rating Customer</div>
       </div>
-      <div class="w-px h-10 bg-dark-border hidden md:block"></div>
+      <div class="w-px h-8 sm:h-10 bg-dark-border"></div>
       <div class="text-center">
-        <div class="text-2xl md:text-4xl font-black text-green-400">34</div>
-        <div class="text-xs md:text-sm text-gray-500 mt-1">Provinsi Terjangkau</div>
+        <div class="text-xl sm:text-2xl md:text-4xl font-black text-green-400">34</div>
+        <div class="text-[10px] sm:text-xs md:text-sm text-gray-500 mt-1">Provinsi Terjangkau</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ========== 4. PAIN SECTION ========== -->
-<section class="py-12 md:py-16 px-4 bg-gradient-to-b from-dark via-red-950/10 to-dark">
+<section class="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-dark via-red-950/10 to-dark">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black mb-3">
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black mb-2 sm:mb-3">
         Jujur Aja... <span class="text-red-500">Dinding Rumah Lo Gitu-gitu Aja?</span>
       </h2>
-      <p class="text-gray-400 text-lg">Coba cek. Berapa banyak dinding kosong di rumah lo?</p>
+      <p class="text-gray-400 text-sm sm:text-lg">Coba cek. Berapa banyak dinding kosong di rumah lo?</p>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-5 fade-up">
-        <div class="text-2xl mb-2">💸</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10">
+      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-3 sm:p-5 fade-up">
+        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">💸</div>
         <h3 class="text-sm font-bold text-red-400 mb-1">Dekor Kayu?</h3>
         <p class="text-gray-400 text-xs">Jutaan, 6 bulan dimakan rayap.</p>
       </div>
-      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-5 fade-up">
-        <div class="text-2xl mb-2">😩</div>
+      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-3 sm:p-5 fade-up">
+        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">😩</div>
         <h3 class="text-sm font-bold text-red-400 mb-1">Wallpaper?</h3>
         <p class="text-gray-400 text-xs">3 bulan ngelupas. Buang duit lagi.</p>
       </div>
-      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-5 fade-up">
-        <div class="text-2xl mb-2">🤦</div>
+      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-3 sm:p-5 fade-up">
+        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🤦</div>
         <h3 class="text-sm font-bold text-red-400 mb-1">Akrilik?</h3>
         <p class="text-gray-400 text-xs">Harga selangit. Dompet jebol.</p>
       </div>
-      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-5 fade-up">
-        <div class="text-2xl mb-2">🏚️</div>
+      <div class="bg-red-950/30 border border-red-900/50 rounded-xl p-3 sm:p-5 fade-up">
+        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🏚️</div>
         <h3 class="text-sm font-bold text-red-400 mb-1">Biarin Aja?</h3>
         <p class="text-gray-400 text-xs">Makin kumuh. Tamu dateng, malu.</p>
       </div>
@@ -222,19 +235,19 @@ tailwind.config = {
 </section>
 
 <!-- ========== 5. SOLUTION + FOTO INTERIOR ========== -->
-<section class="py-12 md:py-16 px-4">
+<section class="py-8 sm:py-12 md:py-16 px-4">
   <div class="max-w-4xl mx-auto text-center">
-    <div class="inline-block bg-green-600/20 border border-green-500/40 rounded-full px-4 py-1 text-green-400 text-sm font-semibold mb-5 fade-up">
+    <div class="inline-block bg-green-600/20 border border-green-500/40 rounded-full px-3 sm:px-4 py-1 text-green-400 text-xs sm:text-sm font-semibold mb-4 sm:mb-5 fade-up">
       ✅ SOLUSINYA ADA DI SINI
     </div>
-    <h2 class="text-3xl md:text-5xl font-black mb-4 fade-up">
+    <h2 class="text-2xl sm:text-3xl md:text-5xl font-black mb-3 sm:mb-4 fade-up">
       KRAWANGAN<br><span class="text-brand glow-orange">PVC BOARD PREMIUM</span>
     </h2>
-    <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto fade-up">
+    <p class="text-gray-400 text-sm sm:text-lg mb-5 sm:mb-8 max-w-2xl mx-auto fade-up">
       Ini bukan dekor biasa. Ini <strong class="text-white">upgrade instan</strong> buat rumah lo.
       Diproduksi dengan <strong class="text-brand">mesin CNC presisi tinggi</strong> &mdash; rapi, detail, dan tampil mewah.
     </p>
-    <div class="grid grid-cols-2 gap-3 mb-8 fade-up">
+    <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-6 sm:mb-8 fade-up">
       <div class="rounded-xl overflow-hidden aspect-[4/3] bg-dark-card">
         <img src="img/interior-2.png" alt="Living room modern dengan panel PVC Board" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy">
       </div>
@@ -248,22 +261,22 @@ tailwind.config = {
         <img src="img/interior-1.png" alt="Ruang tamu mewah dengan PVC Board" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy">
       </div>
     </div>
-    <a href="#order" class="inline-block pulse-cta bg-gradient-to-r from-brand to-red-500 text-white font-black text-lg px-8 py-4 rounded-xl shadow-2xl hover:brightness-110 transition fade-up">
+    <a href="#order" class="inline-block pulse-cta bg-gradient-to-r from-brand to-red-500 text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl hover:brightness-110 transition fade-up w-full sm:w-auto text-center">
       MAU UPGRADE RUMAH SEKARANG →
     </a>
   </div>
 </section>
 
 <!-- ========== 6. BENEFITS ========== -->
-<section class="py-12 md:py-16 px-4 bg-dark-card">
+<section class="py-8 sm:py-12 md:py-16 px-4 bg-dark-card">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black mb-3">
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black mb-2 sm:mb-3">
         KENAPA BANYAK ORANG<br><span class="text-brand">PINDAH KE PVC BOARD?</span>
       </h2>
       <p class="text-gray-400">Karena mereka udah capek buang duit buat dekor yang gak awet.</p>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
       <div class="benefit-card rounded-xl p-5 text-center fade-up">
         <div class="text-3xl mb-2">💧</div>
         <h3 class="font-bold mb-1">TAHAN AIR</h3>
@@ -299,13 +312,13 @@ tailwind.config = {
 </section>
 
 <!-- ========== 7. COMPARISON TABLE ========== -->
-<section class="py-12 md:py-16 px-4">
+<section class="py-8 sm:py-12 md:py-16 px-4">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-8 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black">BANDINGIN SENDIRI 👇</h2>
+    <div class="text-center mb-6 sm:mb-8 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black">BANDINGIN SENDIRI 👇</h2>
     </div>
-    <div class="overflow-x-auto fade-up">
-      <table class="w-full text-left text-sm md:text-base">
+    <div class="overflow-x-auto fade-up -mx-4 px-4 sm:mx-0 sm:px-0">
+      <table class="w-full text-left text-xs sm:text-sm md:text-base min-w-[500px]">
         <thead>
           <tr class="border-b border-dark-border">
             <th class="py-4 px-3 text-gray-500">Kriteria</th>
@@ -343,8 +356,8 @@ tailwind.config = {
         </tbody>
       </table>
     </div>
-    <div class="text-center mt-8 fade-up">
-      <a href="#order" class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white font-black text-lg px-8 py-4 rounded-xl shadow-2xl hover:brightness-110 transition">
+    <div class="text-center mt-6 sm:mt-8 fade-up">
+      <a href="#order" class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl hover:brightness-110 transition w-full sm:w-auto text-center">
         PILIHAN UDAH JELAS → PESAN SEKARANG
       </a>
     </div>
@@ -352,13 +365,13 @@ tailwind.config = {
 </section>
 
 <!-- ========== 8. TESTIMONIALS ========== -->
-<section class="py-12 md:py-16 px-4 bg-dark-card">
+<section class="py-8 sm:py-12 md:py-16 px-4 bg-dark-card">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black mb-3">MEREKA UDAH BUKTIIN SENDIRI</h2>
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black mb-2 sm:mb-3">MEREKA UDAH BUKTIIN SENDIRI</h2>
       <p class="text-gray-400">Bukan kita yang bilang bagus. <strong class="text-white">Mereka yang bilang.</strong></p>
     </div>
-    <div class="grid md:grid-cols-2 gap-5">
+    <div class="grid md:grid-cols-2 gap-3 sm:gap-5">
       <div class="testimonial-card rounded-xl p-5 fade-up">
         <div class="text-gold mb-2 text-sm">★★★★★</div>
         <p class="text-gray-300 mb-4 text-sm">"Gue kira bakal biasa aja, ternyata rumah gue jadi kelihatan <strong class="text-white">MAHAL BANGET!</strong> Suami sampe kaget pas pulang kerja. Best purchase ever! 🔥"</p>
@@ -406,33 +419,33 @@ tailwind.config = {
 </section>
 
 <!-- ========== 9. TRUST / ANTI PHP ========== -->
-<section class="py-12 md:py-16 px-4">
+<section class="py-8 sm:py-12 md:py-16 px-4">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black mb-3">
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black mb-2 sm:mb-3">
         KENAPA BELI DI SINI <span class="text-green-400">100% AMAN?</span>
       </h2>
       <p class="text-gray-400">Kami eliminasi SEMUA risiko belanja online untuk kamu</p>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-      <div class="bg-dark-card rounded-xl p-5 border border-dark-border text-center fade-up">
-        <div class="text-3xl mb-2">🚚</div>
-        <h3 class="font-bold text-sm mb-1">COD</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+      <div class="bg-dark-card rounded-xl p-3 sm:p-5 border border-dark-border text-center fade-up">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">🚚</div>
+        <h3 class="font-bold text-xs sm:text-sm mb-1">COD</h3>
         <p class="text-gray-400 text-xs">Bayar di Tempat. Gak perlu transfer duluan.</p>
       </div>
-      <div class="bg-dark-card rounded-xl p-5 border border-dark-border text-center fade-up">
-        <div class="text-3xl mb-2">🛡️</div>
-        <h3 class="font-bold text-sm mb-1">GARANSI 100%</h3>
+      <div class="bg-dark-card rounded-xl p-3 sm:p-5 border border-dark-border text-center fade-up">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">🛡️</div>
+        <h3 class="font-bold text-xs sm:text-sm mb-1">GARANSI 100%</h3>
         <p class="text-gray-400 text-xs">Uang kembali kalau gak puas. No drama.</p>
       </div>
-      <div class="bg-dark-card rounded-xl p-5 border border-dark-border text-center fade-up">
-        <div class="text-3xl mb-2">📦</div>
-        <h3 class="font-bold text-sm mb-1">PACKING AMAN</h3>
+      <div class="bg-dark-card rounded-xl p-3 sm:p-5 border border-dark-border text-center fade-up">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">📦</div>
+        <h3 class="font-bold text-xs sm:text-sm mb-1">PACKING AMAN</h3>
         <p class="text-gray-400 text-xs">Bubble wrap + kardus tebal + kayu pelindung.</p>
       </div>
-      <div class="bg-dark-card rounded-xl p-5 border border-dark-border text-center fade-up">
-        <div class="text-3xl mb-2">⭐</div>
-        <h3 class="font-bold text-sm mb-1">TRUSTED SELLER</h3>
+      <div class="bg-dark-card rounded-xl p-3 sm:p-5 border border-dark-border text-center fade-up">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">⭐</div>
+        <h3 class="font-bold text-xs sm:text-sm mb-1">TRUSTED SELLER</h3>
         <p class="text-gray-400 text-xs">12,847+ unit terjual. Rating 4.9 bintang.</p>
       </div>
     </div>
@@ -447,61 +460,61 @@ tailwind.config = {
 </section>
 
 <!-- ========== 10. PRICING + SCARCITY ========== -->
-<section class="py-12 md:py-16 px-4 bg-dark-card">
+<section class="py-8 sm:py-12 md:py-16 px-4 bg-dark-card">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black mb-3">
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black mb-2 sm:mb-3">
         <span class="text-red-500">HARGA SPESIAL</span> HARI INI SAJA!
       </h2>
       <p class="text-gray-400">Setelah promo berakhir, harga kembali normal. Gak ada perpanjangan.</p>
     </div>
 
-    <h3 class="text-xl font-black text-center mb-5 fade-up">📐 Ukuran <span class="text-brand">30 x 60 CM</span></h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <h3 class="text-base sm:text-xl font-black text-center mb-4 sm:mb-5 fade-up">📐 Ukuran <span class="text-brand">30 x 60 CM</span></h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 mb-6 sm:mb-8">
       <div class="gradient-border fade-up"><div class="p-4 text-center">
         <div class="text-xs text-gray-500 mb-1">5 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 175Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 175Rb</div>
         <div class="text-xs text-green-400">Rp 35Rb/pcs</div>
       </div></div>
       <div class="gradient-border fade-up"><div class="p-4 text-center relative">
         <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">BEST SELLER</div>
         <div class="text-xs text-gray-500 mb-1">10 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 250Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 250Rb</div>
         <div class="text-xs text-green-400">Rp 25Rb/pcs</div>
       </div></div>
       <div class="gradient-border fade-up"><div class="p-4 text-center">
         <div class="text-xs text-gray-500 mb-1">15 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 525Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 525Rb</div>
         <div class="text-xs text-green-400">Rp 35Rb/pcs</div>
       </div></div>
       <div class="gradient-border fade-up"><div class="p-4 text-center">
         <div class="text-xs text-gray-500 mb-1">20 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 689Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 689Rb</div>
         <div class="text-xs text-green-400">Rp 34.5Rb/pcs</div>
       </div></div>
     </div>
 
-    <h3 class="text-xl font-black text-center mb-5 fade-up">📐 Ukuran <span class="text-brand">40 x 80 CM</span></h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <h3 class="text-base sm:text-xl font-black text-center mb-4 sm:mb-5 fade-up">📐 Ukuran <span class="text-brand">40 x 80 CM</span></h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 mb-6 sm:mb-8">
       <div class="gradient-border fade-up"><div class="p-4 text-center">
         <div class="text-xs text-gray-500 mb-1">5 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 200Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 200Rb</div>
         <div class="text-xs text-green-400">Rp 40Rb/pcs</div>
       </div></div>
       <div class="gradient-border fade-up"><div class="p-4 text-center">
         <div class="text-xs text-gray-500 mb-1">10 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 380Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 380Rb</div>
         <div class="text-xs text-green-400">Rp 38Rb/pcs</div>
       </div></div>
       <div class="gradient-border fade-up"><div class="p-4 text-center">
         <div class="text-xs text-gray-500 mb-1">15 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 555Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 555Rb</div>
         <div class="text-xs text-green-400">Rp 37Rb/pcs</div>
       </div></div>
       <div class="gradient-border fade-up"><div class="p-4 text-center relative">
         <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-green-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">HEMAT MAX</div>
         <div class="text-xs text-gray-500 mb-1">20 pcs</div>
-        <div class="text-2xl md:text-3xl font-black text-brand mb-1">Rp 699Rb</div>
+        <div class="text-lg sm:text-2xl md:text-3xl font-black text-brand mb-1">Rp 699Rb</div>
         <div class="text-xs text-green-400">Rp 35Rb/pcs</div>
       </div></div>
     </div>
@@ -525,10 +538,10 @@ tailwind.config = {
 </section>
 
 <!-- ========== 11. PRODUCT CATALOG ========== -->
-<section class="py-12 md:py-16 px-4">
+<section class="py-8 sm:py-12 md:py-16 px-4">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black mb-3">PILIH DESAIN <span class="text-brand">FAVORIT KAMU</span></h2>
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black mb-2 sm:mb-3">PILIH DESAIN <span class="text-brand">FAVORIT KAMU</span></h2>
       <p class="text-gray-400">Berbagai motif premium, semua diproduksi dengan CNC presisi tinggi</p>
     </div>
     <h3 class="text-lg font-bold text-center mb-4 fade-up">Ukuran <span class="text-brand">40 x 80 CM</span></h3>
@@ -553,19 +566,19 @@ tailwind.config = {
     <div class="text-center mb-8 fade-up">
       <h2 class="text-2xl md:text-3xl font-black mb-2">DETAIL <span class="text-brand">PRODUK</span></h2>
     </div>
-    <div class="grid grid-cols-3 gap-4">
-      <div class="gradient-border fade-up"><div class="p-5 text-center">
-        <div class="text-3xl mb-2">📐</div>
+    <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+      <div class="gradient-border fade-up"><div class="p-3 sm:p-5 text-center">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">📐</div>
         <div class="text-xs text-gray-500 uppercase tracking-wider mb-1">Ukuran</div>
         <div class="text-sm font-black">40x80 CM &<br>30x60 CM</div>
       </div></div>
-      <div class="gradient-border fade-up"><div class="p-5 text-center">
-        <div class="text-3xl mb-2">📏</div>
+      <div class="gradient-border fade-up"><div class="p-3 sm:p-5 text-center">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">📏</div>
         <div class="text-xs text-gray-500 uppercase tracking-wider mb-1">Ketebalan</div>
         <div class="text-sm font-black">5MM PVC<br>PREMIUM</div>
       </div></div>
-      <div class="gradient-border fade-up"><div class="p-5 text-center">
-        <div class="text-3xl mb-2">⚙️</div>
+      <div class="gradient-border fade-up"><div class="p-3 sm:p-5 text-center">
+        <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">⚙️</div>
         <div class="text-xs text-gray-500 uppercase tracking-wider mb-1">Teknologi</div>
         <div class="text-sm font-black">CNC CUTTING<br>PRESISI</div>
       </div></div>
@@ -574,10 +587,10 @@ tailwind.config = {
 </section>
 
 <!-- ========== 13. FAQ ========== -->
-<section class="py-12 md:py-16 px-4">
+<section class="py-8 sm:py-12 md:py-16 px-4">
   <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-10 fade-up">
-      <h2 class="text-2xl md:text-4xl font-black">MASIH RAGU? <span class="text-brand">BACA DULU 👇</span></h2>
+    <div class="text-center mb-6 sm:mb-10 fade-up">
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black">MASIH RAGU? <span class="text-brand">BACA DULU 👇</span></h2>
     </div>
     <div class="space-y-0 fade-up">
       <div class="faq-item active py-5" onclick="toggleFaq(this)">
@@ -615,11 +628,11 @@ tailwind.config = {
       <div class="inline-block bg-red-600/20 border border-red-500/40 rounded-full px-4 py-1 text-red-400 text-sm font-semibold mb-4">
         ⏰ WAKTU HAMPIR HABIS
       </div>
-      <h2 class="text-3xl md:text-5xl font-black mb-4">
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-black mb-3 sm:mb-4">
         JANGAN TUNDA LAGI.<br>
         <span class="text-brand glow-orange">UPGRADE RUMAH SEKARANG!</span>
       </h2>
-      <p class="text-gray-400 text-lg max-w-xl mx-auto mb-2">
+      <p class="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto mb-2">
         Harga mulai <span class="text-brand font-bold">Rp 175.000 / 5 pcs</span> cuma berlaku selama promo.
       </p>
       <p class="text-red-400 font-bold">
@@ -672,7 +685,7 @@ tailwind.config = {
 </section>
 
 <!-- ========== FOOTER ========== -->
-<footer class="py-8 px-4 text-center text-gray-600 text-sm border-t border-dark-border">
+<footer class="py-8 pb-20 sm:pb-8 px-4 text-center text-gray-600 text-sm border-t border-dark-border">
   <div class="max-w-4xl mx-auto">
     <p>&copy; 2026 Krawangan PVC Board Premium. All rights reserved.</p>
     <p class="mt-1">Trusted by 12,847+ happy customers across Indonesia</p>
