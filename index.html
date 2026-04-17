@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Krawangan PVC Board Premium - Upgrade Dinding Rumah dalam 5 Menit!</title>
 <meta name="description" content="Krawangan PVC Board Premium. Dekorasi dinding mewah, harga merakyat. Anti rayap, tahan air, pasang sendiri 5 menit. CNC cutting presisi tinggi.">
 <!-- Meta Pixel Code -->
@@ -44,9 +44,11 @@ tailwind.config = {
 }
 </script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: #0F0F0F; color: #fff; overflow-x: hidden; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { font-family: 'Inter', sans-serif; background: #0F0F0F; color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  img { max-width: 100%; height: auto; }
+  a { touch-action: manipulation; }
 
   .glow-orange { text-shadow: 0 0 20px rgba(249,115,22,0.5), 0 0 40px rgba(249,115,22,0.3); }
   .glow-gold { text-shadow: 0 0 20px rgba(255,215,0,0.5); }
@@ -92,9 +94,9 @@ tailwind.config = {
 
   .testimonial-card { background: linear-gradient(135deg, #1A1A1A 0%, #1F1F1F 100%); border: 1px solid #2A2A2A; }
 
-  .faq-item { border-bottom: 1px solid #2A2A2A; cursor: pointer; }
+  .faq-item { border-bottom: 1px solid #2A2A2A; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-  .faq-item.active .faq-answer { max-height: 200px; }
+  .faq-item.active .faq-answer { max-height: 300px; }
   .faq-item.active .faq-arrow { transform: rotate(180deg); }
   .faq-arrow { transition: transform 0.3s ease; }
 
@@ -134,15 +136,57 @@ tailwind.config = {
   @keyframes typing-cursor { 0%, 100% { border-color: #F97316; } 50% { border-color: transparent; } }
 
   @media (max-width: 640px) {
-    .notification-popup { left: 8px !important; right: 8px !important; max-width: none !important; bottom: 70px !important; }
-    .sticky-cta.show + .notification-popup.show, .notification-popup { bottom: 70px !important; }
+    .notification-popup { left: 8px !important; right: 8px !important; max-width: none !important; bottom: 75px !important; }
+    .sticky-cta.show + .notification-popup.show, .notification-popup { bottom: 75px !important; }
     .benefit-card { padding: 12px !important; }
     .benefit-card h3 { font-size: 12px; }
     .benefit-card p { font-size: 11px; }
+
+    h1 { font-size: 1.6rem !important; line-height: 1.2 !important; }
+    h2 { font-size: 1.3rem !important; line-height: 1.25 !important; }
+
+    .shopee-btn { font-size: 15px !important; padding: 14px 20px !important; }
+    .pulse-cta { animation: pulseCta 2.5s ease-in-out infinite; }
+
+    table { font-size: 11px !important; }
+    table th, table td { padding: 8px 4px !important; }
+
+    .testimonial-card { padding: 14px !important; }
+    .testimonial-card p { font-size: 13px !important; }
+    .ribbon span { font-size: 9px !important; padding: 2px 8px !important; }
+
+    .faq-item h3 { font-size: 14px !important; }
+
+    .exit-modal .modal-content { padding: 20px !important; margin: 8px !important; }
+    .exit-modal .modal-content h3 { font-size: 1.2rem !important; }
+
+    .gradient-border > div, .gradient-border-gold > div { padding: 10px !important; }
+
+    .stock-alert { padding: 16px !important; }
+
+    footer { padding-bottom: 80px !important; }
+  }
+
+  @media (max-width: 380px) {
+    h1 { font-size: 1.4rem !important; }
+    h2 { font-size: 1.15rem !important; }
+    .shopee-btn { font-size: 14px !important; padding: 12px 16px !important; }
   }
 
   @supports (padding-bottom: env(safe-area-inset-bottom)) {
     .sticky-cta > div { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+    footer { padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important; }
+    .notification-popup { bottom: calc(75px + env(safe-area-inset-bottom)) !important; }
+    .exit-modal .modal-content { margin-bottom: calc(16px + env(safe-area-inset-bottom)) !important; }
+  }
+
+  @supports (padding-top: env(safe-area-inset-top)) {
+    .sticky.top-0 { top: env(safe-area-inset-top) !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-cta, .shake-cta, .fire-emoji, .blinking, .bounce-arrow, .marquee-track { animation: none !important; }
+    .fade-up, .slide-left, .slide-right, .scale-in { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 </style>
 </head>
@@ -191,39 +235,39 @@ tailwind.config = {
 </div>
 
 <!-- ========== HERO SECTION ========== -->
-<section class="relative py-6 sm:py-10 md:py-16 px-4 overflow-hidden">
+<section class="relative py-5 sm:py-10 md:py-16 px-4 overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-b from-orange-950/30 via-transparent to-transparent"></div>
   <div class="max-w-5xl mx-auto relative z-10">
-    <div class="grid md:grid-cols-2 gap-5 sm:gap-8 items-center">
+    <div class="grid md:grid-cols-2 gap-4 sm:gap-8 items-center">
       <div class="fade-up order-first md:order-last">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/20 border border-dark-border relative">
-          <div class="absolute top-3 left-3 z-10 bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full blinking">🔴 LIVE — STOK MENIPIS</div>
-          <img src="img/interior-1.png" alt="Ruang tamu mewah dengan Krawangan PVC Board Premium" class="w-full h-auto" loading="eager">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/20 border border-dark-border relative max-h-[280px] sm:max-h-none">
+          <div class="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 bg-red-600 text-white text-[10px] sm:text-xs font-black px-2 sm:px-3 py-0.5 sm:py-1 rounded-full blinking">🔴 LIVE — STOK MENIPIS</div>
+          <img src="img/interior-1.png" alt="Ruang tamu mewah dengan Krawangan PVC Board Premium" class="w-full h-full object-cover" loading="eager">
         </div>
       </div>
       <div class="text-center md:text-left">
-        <div class="inline-block bg-red-600/20 border border-red-500/40 rounded-full px-3 sm:px-4 py-1 text-red-400 text-xs sm:text-sm font-semibold mb-3 sm:mb-4 fade-up">
+        <div class="inline-block bg-red-600/20 border border-red-500/40 rounded-full px-3 sm:px-4 py-1 text-red-400 text-[11px] sm:text-sm font-semibold mb-2 sm:mb-4 fade-up">
           ⚠️ PERINGATAN: INI BUKAN DEKOR BIASA
         </div>
-        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-3 sm:mb-4 fade-up">
+        <h1 class="text-[1.55rem] sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.15] sm:leading-tight mb-2 sm:mb-4 fade-up">
           RUMAH KELIHATAN <span class="text-red-500 glow-red">MURAHAN</span><br>
           CUMA KARENA<br>
           <span class="text-brand glow-orange">DINDING KOSONG?</span>
         </h1>
-        <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-2 sm:mb-3 fade-up font-semibold">
+        <p class="text-[15px] sm:text-lg md:text-xl text-gray-300 mb-2 sm:mb-3 fade-up font-semibold leading-snug">
           Ini solusi <span class="text-brand font-black">TERMURAH & TERCEPAT</span> bikin rumah lo
           <span class="text-gold glow-gold font-black">KELIATAN SULTAN DALAM 5 MENIT!</span>
         </p>
-        <p class="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 fade-up">
+        <p class="text-sm sm:text-base text-gray-400 mb-3 sm:mb-6 fade-up">
           <span class="text-green-400">12,847+ orang</span> udah buktiin. Sekarang giliran lo.
         </p>
-        <div class="fade-up mb-3">
-          <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Hero CTA'})" class="pulse-cta shopee-btn inline-block text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl w-full sm:w-auto text-center">
+        <div class="fade-up mb-2 sm:mb-3">
+          <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Hero CTA'})" class="pulse-cta shopee-btn inline-block text-white font-black text-[15px] sm:text-lg px-5 sm:px-8 py-3 sm:py-4 rounded-xl shadow-2xl w-full sm:w-auto text-center min-h-[48px] flex items-center justify-center">
             🛒 BELI DI SHOPEE — HARGA TERMURAH
           </a>
         </div>
-        <p class="text-xs text-gray-500 mb-4 fade-up">👆 Klik sekarang sebelum harga naik. Bisa COD & Gratis Ongkir!</p>
-        <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400 fade-up">
+        <p class="text-[11px] sm:text-xs text-gray-500 mb-3 sm:mb-4 fade-up">👆 Klik sekarang sebelum harga naik. Bisa COD & Gratis Ongkir!</p>
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-4 text-[11px] sm:text-sm text-gray-400 fade-up">
           <span class="flex items-center gap-1"><span class="text-green-400">✅</span> COD</span>
           <span class="flex items-center gap-1"><span class="text-green-400">✅</span> Garansi 100%</span>
           <span class="flex items-center gap-1"><span class="text-green-400">✅</span> Gratis Ongkir</span>
@@ -395,8 +439,9 @@ tailwind.config = {
       </h2>
       <p class="text-gray-400 text-sm">Data gak bisa bohong. Lihat sendiri mana yang paling worth it.</p>
     </div>
-    <div class="overflow-x-auto fade-up -mx-4 px-4 sm:mx-0 sm:px-0">
-      <table class="w-full text-left text-xs sm:text-sm md:text-base min-w-[500px]">
+    <p class="text-center text-[10px] text-gray-500 mb-2 sm:hidden fade-up">👉 Geser ke kanan untuk lihat semua</p>
+    <div class="overflow-x-auto fade-up -mx-4 px-4 sm:mx-0 sm:px-0 -webkit-overflow-scrolling-touch" style="-webkit-overflow-scrolling: touch;">
+      <table class="w-full text-left text-[11px] sm:text-sm md:text-base min-w-[480px]">
         <thead>
           <tr class="border-b border-dark-border">
             <th class="py-4 px-3 text-gray-500">Kriteria</th>
@@ -453,71 +498,71 @@ tailwind.config = {
       </h2>
       <p class="text-gray-400">Review ASLI dari Shopee. Gak diedit. Gak dilebih-lebihkan.</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-3 sm:gap-5">
-      <div class="testimonial-card rounded-xl p-5 fade-up relative">
+    <div class="grid md:grid-cols-2 gap-2.5 sm:gap-5">
+      <div class="testimonial-card rounded-xl p-3.5 sm:p-5 fade-up relative">
         <div class="ribbon"><span>VIRAL</span></div>
-        <div class="text-gold mb-2 text-sm">★★★★★</div>
-        <p class="text-gray-300 mb-4 text-sm">"Gue kira bakal biasa aja, ternyata rumah gue jadi kelihatan <strong class="text-white">MAHAL BANGET!</strong> Suami sampe kaget pas pulang kerja. Langsung foto-foto buat story IG. Best purchase ever! 🔥"</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold text-sm">R</div>
-          <div><div class="font-semibold text-sm">Rina S.</div><div class="text-xs text-gray-500">Jakarta Selatan • Beli 8 pcs</div></div>
-          <div class="ml-auto text-green-400 text-xs font-bold">✅ Shopee Verified</div>
+        <div class="text-gold mb-1.5 sm:mb-2 text-xs sm:text-sm">★★★★★</div>
+        <p class="text-gray-300 mb-3 sm:mb-4 text-[13px] sm:text-sm leading-relaxed">"Gue kira bakal biasa aja, ternyata rumah gue jadi kelihatan <strong class="text-white">MAHAL BANGET!</strong> Suami sampe kaget pas pulang kerja. Langsung foto-foto buat story IG. Best purchase ever! 🔥"</p>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold text-xs sm:text-sm flex-shrink-0">R</div>
+          <div class="min-w-0"><div class="font-semibold text-xs sm:text-sm">Rina S.</div><div class="text-[10px] sm:text-xs text-gray-500">Jakarta Selatan • Beli 8 pcs</div></div>
+          <div class="ml-auto text-green-400 text-[10px] sm:text-xs font-bold flex-shrink-0">✅ Verified</div>
         </div>
       </div>
-      <div class="testimonial-card rounded-xl p-5 fade-up">
-        <div class="text-gold mb-2 text-sm">★★★★★</div>
-        <p class="text-gray-300 mb-4 text-sm">"Tetangga sampe nanya renov berapa juta, padahal cuma pasang Krawangan PVC Board ini doang! 😂 <strong class="text-white">Malu bilang harga aslinya.</strong> Mereka pasti gak percaya cuma ratusan ribu."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">B</div>
-          <div><div class="font-semibold text-sm">Budi W.</div><div class="text-xs text-gray-500">Bandung • Beli 12 pcs</div></div>
-          <div class="ml-auto text-green-400 text-xs font-bold">✅ Shopee Verified</div>
+      <div class="testimonial-card rounded-xl p-3.5 sm:p-5 fade-up">
+        <div class="text-gold mb-1.5 sm:mb-2 text-xs sm:text-sm">★★★★★</div>
+        <p class="text-gray-300 mb-3 sm:mb-4 text-[13px] sm:text-sm leading-relaxed">"Tetangga sampe nanya renov berapa juta, padahal cuma pasang Krawangan PVC Board ini doang! 😂 <strong class="text-white">Malu bilang harga aslinya.</strong> Mereka pasti gak percaya cuma ratusan ribu."</p>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs sm:text-sm flex-shrink-0">B</div>
+          <div class="min-w-0"><div class="font-semibold text-xs sm:text-sm">Budi W.</div><div class="text-[10px] sm:text-xs text-gray-500">Bandung • Beli 12 pcs</div></div>
+          <div class="ml-auto text-green-400 text-[10px] sm:text-xs font-bold flex-shrink-0">✅ Verified</div>
         </div>
       </div>
-      <div class="testimonial-card rounded-xl p-5 fade-up">
-        <div class="text-gold mb-2 text-sm">★★★★★</div>
-        <p class="text-gray-300 mb-4 text-sm">"NYESEL GAK BELI DARI DULU! Udah habis jutaan buat dekor kayu, eh dimakan rayap semua. Ini PVC Board <strong class="text-white">awet banget</strong> dan harga jauh lebih murah. <strong class="text-brand">Langsung repeat order buat ruangan lain!</strong>"</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-sm">A</div>
-          <div><div class="font-semibold text-sm">Ahmad K.</div><div class="text-xs text-gray-500">Surabaya • Repeat Order 3x</div></div>
-          <div class="ml-auto text-green-400 text-xs font-bold">✅ Shopee Verified</div>
+      <div class="testimonial-card rounded-xl p-3.5 sm:p-5 fade-up">
+        <div class="text-gold mb-1.5 sm:mb-2 text-xs sm:text-sm">★★★★★</div>
+        <p class="text-gray-300 mb-3 sm:mb-4 text-[13px] sm:text-sm leading-relaxed">"NYESEL GAK BELI DARI DULU! Udah habis jutaan buat dekor kayu, eh dimakan rayap semua. Ini PVC Board <strong class="text-white">awet banget</strong> dan harga jauh lebih murah. <strong class="text-brand">Langsung repeat order buat ruangan lain!</strong>"</p>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-xs sm:text-sm flex-shrink-0">A</div>
+          <div class="min-w-0"><div class="font-semibold text-xs sm:text-sm">Ahmad K.</div><div class="text-[10px] sm:text-xs text-gray-500">Surabaya • Repeat Order 3x</div></div>
+          <div class="ml-auto text-green-400 text-[10px] sm:text-xs font-bold flex-shrink-0">✅ Verified</div>
         </div>
       </div>
-      <div class="testimonial-card rounded-xl p-5 fade-up">
-        <div class="text-gold mb-2 text-sm">★★★★★</div>
-        <p class="text-gray-300 mb-4 text-sm">"Pasang sendiri cuma 5 menit. Gak perlu tukang, gak perlu ribet. Langsung keliatan mewah. <strong class="text-white">Istri happy, dompet aman.</strong> Ini sih wajib beli buat semua ruangan! 💪"</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 font-bold text-sm">D</div>
-          <div><div class="font-semibold text-sm">Dedi P.</div><div class="text-xs text-gray-500">Yogyakarta • Beli 15 pcs</div></div>
-          <div class="ml-auto text-green-400 text-xs font-bold">✅ Shopee Verified</div>
+      <div class="testimonial-card rounded-xl p-3.5 sm:p-5 fade-up">
+        <div class="text-gold mb-1.5 sm:mb-2 text-xs sm:text-sm">★★★★★</div>
+        <p class="text-gray-300 mb-3 sm:mb-4 text-[13px] sm:text-sm leading-relaxed">"Pasang sendiri cuma 5 menit. Gak perlu tukang, gak perlu ribet. Langsung keliatan mewah. <strong class="text-white">Istri happy, dompet aman.</strong> Ini sih wajib beli buat semua ruangan! 💪"</p>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 font-bold text-xs sm:text-sm flex-shrink-0">D</div>
+          <div class="min-w-0"><div class="font-semibold text-xs sm:text-sm">Dedi P.</div><div class="text-[10px] sm:text-xs text-gray-500">Yogyakarta • Beli 15 pcs</div></div>
+          <div class="ml-auto text-green-400 text-[10px] sm:text-xs font-bold flex-shrink-0">✅ Verified</div>
         </div>
       </div>
-      <div class="testimonial-card rounded-xl p-5 fade-up">
-        <div class="text-gold mb-2 text-sm">★★★★★</div>
-        <p class="text-gray-300 mb-4 text-sm">"Awalnya ragu beli online. Tapi begitu sampai, <strong class="text-white">GILA SIH KUALITASNYA.</strong> Packing rapi banget, barang mulus. Langsung pasang, 5 menit rumah berubah total. RECOMMENDED BANGET! 🏠"</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold text-sm">S</div>
-          <div><div class="font-semibold text-sm">Sari M.</div><div class="text-xs text-gray-500">Bekasi • Beli 10 pcs</div></div>
-          <div class="ml-auto text-green-400 text-xs font-bold">✅ Shopee Verified</div>
+      <div class="testimonial-card rounded-xl p-3.5 sm:p-5 fade-up">
+        <div class="text-gold mb-1.5 sm:mb-2 text-xs sm:text-sm">★★★★★</div>
+        <p class="text-gray-300 mb-3 sm:mb-4 text-[13px] sm:text-sm leading-relaxed">"Awalnya ragu beli online. Tapi begitu sampai, <strong class="text-white">GILA SIH KUALITASNYA.</strong> Packing rapi banget, barang mulus. Langsung pasang, 5 menit rumah berubah total. RECOMMENDED BANGET! 🏠"</p>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold text-xs sm:text-sm flex-shrink-0">S</div>
+          <div class="min-w-0"><div class="font-semibold text-xs sm:text-sm">Sari M.</div><div class="text-[10px] sm:text-xs text-gray-500">Bekasi • Beli 10 pcs</div></div>
+          <div class="ml-auto text-green-400 text-[10px] sm:text-xs font-bold flex-shrink-0">✅ Verified</div>
         </div>
       </div>
-      <div class="testimonial-card rounded-xl p-5 fade-up">
-        <div class="text-gold mb-2 text-sm">★★★★★</div>
-        <p class="text-gray-300 mb-4 text-sm">"Istri minta renovasi ruang tamu, gue udah stress mikirin biaya. Eh ternyata ada ini! <strong class="text-white">Budget cuma 300rb tapi hasil keliatan kayak renovasi 5 JUTA.</strong> Istri seneng, gue lega. 😁"</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold text-sm">H</div>
-          <div><div class="font-semibold text-sm">Hendra T.</div><div class="text-xs text-gray-500">Tangerang • Beli 6 pcs</div></div>
-          <div class="ml-auto text-green-400 text-xs font-bold">✅ Shopee Verified</div>
+      <div class="testimonial-card rounded-xl p-3.5 sm:p-5 fade-up">
+        <div class="text-gold mb-1.5 sm:mb-2 text-xs sm:text-sm">★★★★★</div>
+        <p class="text-gray-300 mb-3 sm:mb-4 text-[13px] sm:text-sm leading-relaxed">"Istri minta renovasi ruang tamu, gue udah stress mikirin biaya. Eh ternyata ada ini! <strong class="text-white">Budget cuma 300rb tapi hasil keliatan kayak renovasi 5 JUTA.</strong> Istri seneng, gue lega. 😁"</p>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold text-xs sm:text-sm flex-shrink-0">H</div>
+          <div class="min-w-0"><div class="font-semibold text-xs sm:text-sm">Hendra T.</div><div class="text-[10px] sm:text-xs text-gray-500">Tangerang • Beli 6 pcs</div></div>
+          <div class="ml-auto text-green-400 text-[10px] sm:text-xs font-bold flex-shrink-0">✅ Verified</div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-6 sm:mt-8 fade-up">
-      <div class="inline-flex items-center gap-2 bg-red-950/40 border border-red-500/30 rounded-full px-5 py-2 text-red-400 text-sm mb-5">
+    <div class="text-center mt-5 sm:mt-8 fade-up">
+      <div class="inline-flex items-center gap-2 bg-red-950/40 border border-red-500/30 rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-red-400 text-[12px] sm:text-sm mb-4 sm:mb-5">
         <span class="live-counter inline-block w-2 h-2 bg-red-500 rounded-full"></span>
-        <span class="font-bold" id="liveViewers">127</span> orang sedang checkout produk ini SEKARANG
+        <span class="font-bold" id="liveViewers">127</span> orang sedang checkout SEKARANG
       </div>
       <br>
-      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Testimonial CTA'})" class="inline-block shopee-btn text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl w-full sm:w-auto text-center">
+      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Testimonial CTA'})" class="inline-block shopee-btn text-white font-black text-[15px] sm:text-lg px-5 sm:px-8 py-3 sm:py-4 rounded-xl shadow-2xl w-full sm:w-auto text-center min-h-[48px]">
         GAK MAU KETINGGALAN? 🛒 BELI SEKARANG →
       </a>
     </div>
@@ -593,13 +638,13 @@ tailwind.config = {
       <p class="text-xs text-gray-500">Dilindungi oleh Garansi Shopee — uang aman di Shopee sampai barang diterima.</p>
     </div>
 
-    <div class="flex flex-wrap items-center justify-center gap-4 fade-up">
-      <div class="bg-white rounded-lg px-4 py-2"><span class="text-blue-800 font-black text-sm">BCA</span></div>
-      <div class="bg-white rounded-lg px-4 py-2"><span class="text-blue-900 font-black text-sm">Mandiri</span></div>
-      <div class="bg-white rounded-lg px-4 py-2"><span class="text-orange-600 font-black text-sm">BNI</span></div>
-      <div class="bg-white rounded-lg px-4 py-2"><span class="text-blue-700 font-black text-sm">BRI</span></div>
-      <div class="bg-white rounded-lg px-4 py-2"><span class="text-green-600 font-black text-sm">COD ✅</span></div>
-      <div class="bg-white rounded-lg px-4 py-2"><span class="font-black text-sm" style="color:#EE4D2D">ShopeePay</span></div>
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 fade-up">
+      <div class="bg-white rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2"><span class="text-blue-800 font-black text-[11px] sm:text-sm">BCA</span></div>
+      <div class="bg-white rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2"><span class="text-blue-900 font-black text-[11px] sm:text-sm">Mandiri</span></div>
+      <div class="bg-white rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2"><span class="text-orange-600 font-black text-[11px] sm:text-sm">BNI</span></div>
+      <div class="bg-white rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2"><span class="text-blue-700 font-black text-[11px] sm:text-sm">BRI</span></div>
+      <div class="bg-white rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2"><span class="text-green-600 font-black text-[11px] sm:text-sm">COD ✅</span></div>
+      <div class="bg-white rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2"><span class="font-black text-[11px] sm:text-sm" style="color:#EE4D2D">ShopeePay</span></div>
     </div>
   </div>
 </section>
@@ -619,7 +664,7 @@ tailwind.config = {
         <div class="progress-bar-fill h-full rounded-full" style="width: 77%"></div>
       </div>
       <p class="text-xs text-gray-500 mb-4">⏰ Stok terakhir update: <span id="stockTime">2 menit lalu</span></p>
-      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Stock CTA'})" class="block shopee-btn text-white font-black text-lg px-8 py-4 rounded-xl shadow-2xl shake-cta">
+      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Stock CTA'})" class="block shopee-btn text-white font-black text-[15px] sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl shake-cta min-h-[48px]">
         🛒 AMANKAN STOK — BELI DI SHOPEE
       </a>
     </div>
@@ -637,17 +682,17 @@ tailwind.config = {
     </div>
 
     <h3 class="text-lg font-bold text-center mb-4 fade-up">📐 Ukuran <span class="text-brand">40 x 80 CM</span> <span class="text-xs text-green-400 bg-green-950/30 px-2 py-0.5 rounded-full">BEST SELLER</span></h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-      <div class="rounded-xl overflow-hidden fade-up border border-dark-border hover:border-brand transition"><img src="img/motif-40x80-a.png" alt="Motif 40x80 set A" class="w-full h-auto hover:scale-105 transition duration-500" loading="lazy"></div>
-      <div class="rounded-xl overflow-hidden fade-up border border-dark-border hover:border-brand transition"><img src="img/motif-40x80-b.png" alt="Motif 40x80 set B" class="w-full h-auto hover:scale-105 transition duration-500" loading="lazy"></div>
-      <div class="rounded-xl overflow-hidden fade-up border border-dark-border hover:border-brand transition"><img src="img/motif-40x80-c.png" alt="Motif 40x80 set C" class="w-full h-auto hover:scale-105 transition duration-500" loading="lazy"></div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 mb-8">
+      <div class="rounded-xl overflow-hidden fade-up border border-dark-border active:border-brand transition"><img src="img/motif-40x80-a.png" alt="Motif 40x80 set A" class="w-full h-auto" loading="lazy"></div>
+      <div class="rounded-xl overflow-hidden fade-up border border-dark-border active:border-brand transition"><img src="img/motif-40x80-b.png" alt="Motif 40x80 set B" class="w-full h-auto" loading="lazy"></div>
+      <div class="rounded-xl overflow-hidden fade-up border border-dark-border active:border-brand transition col-span-2 md:col-span-1"><img src="img/motif-40x80-c.png" alt="Motif 40x80 set C" class="w-full h-auto" loading="lazy"></div>
     </div>
 
     <h3 class="text-lg font-bold text-center mb-4 fade-up">📐 Ukuran <span class="text-brand">30 x 60 CM</span></h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-      <div class="rounded-xl overflow-hidden fade-up border border-dark-border hover:border-brand transition"><img src="img/motif-30x60-a.png" alt="Motif 30x60 set A" class="w-full h-auto hover:scale-105 transition duration-500" loading="lazy"></div>
-      <div class="rounded-xl overflow-hidden fade-up border border-dark-border hover:border-brand transition"><img src="img/motif-30x60-b.png" alt="Motif 30x60 set B" class="w-full h-auto hover:scale-105 transition duration-500" loading="lazy"></div>
-      <div class="rounded-xl overflow-hidden fade-up border border-dark-border hover:border-brand transition"><img src="img/motif-30x60-c.png" alt="Motif 30x60 set C" class="w-full h-auto hover:scale-105 transition duration-500" loading="lazy"></div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 mb-8">
+      <div class="rounded-xl overflow-hidden fade-up border border-dark-border active:border-brand transition"><img src="img/motif-30x60-a.png" alt="Motif 30x60 set A" class="w-full h-auto" loading="lazy"></div>
+      <div class="rounded-xl overflow-hidden fade-up border border-dark-border active:border-brand transition"><img src="img/motif-30x60-b.png" alt="Motif 30x60 set B" class="w-full h-auto" loading="lazy"></div>
+      <div class="rounded-xl overflow-hidden fade-up border border-dark-border active:border-brand transition col-span-2 md:col-span-1"><img src="img/motif-30x60-c.png" alt="Motif 30x60 set C" class="w-full h-auto" loading="lazy"></div>
     </div>
 
     <div class="text-center fade-up">
@@ -707,33 +752,33 @@ tailwind.config = {
       <h2 class="text-xl sm:text-2xl md:text-4xl font-black">MASIH ADA PERTANYAAN? <span class="text-brand">INI JAWABNYA 👇</span></h2>
     </div>
     <div class="space-y-0 fade-up">
-      <div class="faq-item active py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Susah gak pasangnya?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3">GAMPANG BANGET. Tinggal tempel pakai lem atau paku kecil, <strong class="text-white">5 menit kelar</strong>. Gak perlu tukang, gak perlu bor. Ibu-ibu aja bisa sendiri.</p></div>
+      <div class="faq-item active py-3.5 sm:py-5" onclick="toggleFaq(this)">
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Susah gak pasangnya?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed">GAMPANG BANGET. Tinggal tempel pakai lem atau paku kecil, <strong class="text-white">5 menit kelar</strong>. Gak perlu tukang, gak perlu bor. Ibu-ibu aja bisa sendiri.</p></div>
       </div>
       <div class="faq-item py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Awet berapa lama?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3">PVC Board itu <strong class="text-white">anti rayap, tahan air, tahan panas</strong>. Bisa BERTAHUN-TAHUN tanpa rusak. Jauh lebih awet dari kayu yang 6 bulan udah dimakan rayap.</p></div>
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Awet berapa lama?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed">PVC Board itu <strong class="text-white">anti rayap, tahan air, tahan panas</strong>. Bisa BERTAHUN-TAHUN tanpa rusak. Jauh lebih awet dari kayu yang 6 bulan udah dimakan rayap.</p></div>
       </div>
       <div class="faq-item py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Bisa outdoor?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3"><strong class="text-white">BISA BANGET!</strong> Tahan air & tahan panas. Cocok buat teras, carport, mushola, bahkan kamar mandi.</p></div>
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Bisa outdoor?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed"><strong class="text-white">BISA BANGET!</strong> Tahan air & tahan panas. Cocok buat teras, carport, mushola, bahkan kamar mandi.</p></div>
       </div>
       <div class="faq-item py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Kok murah banget? Jangan-jangan jelek?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3">Murah karena <strong class="text-white">langsung dari produsen</strong>, tanpa perantara. Material tetap premium 5mm PVC Board + CNC presisi. Buktinya? Rating 4.9 dari 2,341 review di Shopee. Data gak bohong.</p></div>
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Kok murah banget? Jangan-jangan jelek?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed">Murah karena <strong class="text-white">langsung dari produsen</strong>, tanpa perantara. Material tetap premium 5mm PVC Board + CNC presisi. Buktinya? Rating 4.9 dari 2,341 review di Shopee. Data gak bohong.</p></div>
       </div>
       <div class="faq-item py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Kalau gak cocok gimana?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3"><strong class="text-white">Garansi 100% uang kembali</strong> via Shopee. Barang cacat? Gak sesuai? Uang dikembalikan full. Plus dilindungi Garansi Shopee. <strong class="text-green-400">Zero risiko buat kamu.</strong></p></div>
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Kalau gak cocok gimana?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed"><strong class="text-white">Garansi 100% uang kembali</strong> via Shopee. Barang cacat? Gak sesuai? Uang dikembalikan full. Plus dilindungi Garansi Shopee. <strong class="text-green-400">Zero risiko buat kamu.</strong></p></div>
       </div>
       <div class="faq-item py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Kirim ke seluruh Indonesia?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3"><strong class="text-white">34 provinsi terjangkau.</strong> Dari Sabang sampai Merauke. Packing super aman: bubble wrap + kardus tebal + kayu pelindung.</p></div>
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Kirim ke seluruh Indonesia?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed"><strong class="text-white">34 provinsi terjangkau.</strong> Dari Sabang sampai Merauke. Packing super aman: bubble wrap + kardus tebal + kayu pelindung.</p></div>
       </div>
       <div class="faq-item py-5" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between"><h3 class="font-bold text-base md:text-lg pr-4">"Belinya dimana? Aman gak?"</h3><span class="faq-arrow text-brand text-xl flex-shrink-0">▼</span></div>
-        <div class="faq-answer"><p class="text-gray-400 mt-3">Langsung di <strong class="text-white">Shopee — Official Store kami.</strong> Dilindungi Garansi Shopee, bisa COD, bisa pakai ShopeePay, bisa cicilan. <strong class="text-green-400">100% AMAN.</strong></p></div>
+        <div class="flex items-center justify-between min-h-[44px]"><h3 class="font-bold text-[14px] sm:text-base md:text-lg pr-3">"Belinya dimana? Aman gak?"</h3><span class="faq-arrow text-brand text-lg sm:text-xl flex-shrink-0">▼</span></div>
+        <div class="faq-answer"><p class="text-gray-400 mt-2 sm:mt-3 text-[13px] sm:text-base leading-relaxed">Langsung di <strong class="text-white">Shopee — Official Store kami.</strong> Dilindungi Garansi Shopee, bisa COD, bisa pakai ShopeePay, bisa cicilan. <strong class="text-green-400">100% AMAN.</strong></p></div>
       </div>
     </div>
   </div>
@@ -785,9 +830,9 @@ tailwind.config = {
       </div>
 
       <!-- MAIN CTA -->
-      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Final CTA'})" class="block pulse-cta shopee-btn text-white font-black text-lg sm:text-xl px-8 py-4 sm:py-5 rounded-xl shadow-2xl max-w-md mx-auto mb-4 text-center">
+      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Final CTA'})" class="block pulse-cta shopee-btn text-white font-black text-[16px] sm:text-xl px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl shadow-2xl max-w-md mx-auto mb-4 text-center min-h-[52px]">
         🛒 BELI SEKARANG DI SHOPEE<br>
-        <span class="text-sm font-semibold opacity-90">Klik & Langsung Checkout — Gak Pake Ribet!</span>
+        <span class="text-[12px] sm:text-sm font-semibold opacity-90">Klik & Langsung Checkout — Gak Pake Ribet!</span>
       </a>
 
       <p class="text-xs text-gray-500 mb-6">🔒 Dilindungi Garansi Shopee. Uang aman sampai barang diterima.</p>
@@ -813,7 +858,7 @@ tailwind.config = {
       Sementara lo mikir, <span class="text-white font-bold">orang lain udah checkout.</span> Stok makin menipis.
       <br>Rumah lo masih sama — dinding kosong, keliatan biasa aja.
     </p>
-    <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Last Chance CTA'})" class="inline-block pulse-cta shopee-btn text-white font-black text-lg px-8 py-4 rounded-xl shadow-2xl fade-up">
+    <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Last Chance CTA'})" class="inline-block pulse-cta shopee-btn text-white font-black text-[15px] sm:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl fade-up w-full sm:w-auto text-center min-h-[48px]">
       STOP MIKIR — CHECKOUT SEKARANG 🛒
     </a>
   </div>
@@ -829,14 +874,14 @@ tailwind.config = {
 </footer>
 
 <!-- ========== STICKY BOTTOM CTA ========== -->
-<div class="fixed bottom-0 left-0 right-0 z-50 sticky-cta" id="stickyCta">
-  <div class="bg-dark/95 backdrop-blur-lg border-t border-dark-border px-4 py-3 shadow-2xl">
-    <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
-      <div>
-        <div class="text-xs font-bold">🔥 Stok tinggal <span class="text-red-400 blinking" id="stickyStock">23</span> pcs!</div>
-        <div class="text-[10px] text-gray-500">Harga naik setelah promo habis</div>
+<div class="fixed bottom-0 left-0 right-0 z-50 sticky-cta" id="stickyCta" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+  <div class="bg-dark/95 backdrop-blur-lg border-t border-dark-border px-3 sm:px-4 py-2.5 sm:py-3 shadow-2xl">
+    <div class="max-w-3xl mx-auto flex items-center justify-between gap-2 sm:gap-3">
+      <div class="min-w-0">
+        <div class="text-[11px] sm:text-xs font-bold truncate">🔥 Stok tinggal <span class="text-red-400 blinking" id="stickyStock">23</span> pcs!</div>
+        <div class="text-[9px] sm:text-[10px] text-gray-500">Harga naik setelah promo habis</div>
       </div>
-      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Sticky CTA'})" class="flex-shrink-0 text-center shopee-btn text-white font-black text-sm px-5 py-2.5 rounded-xl">
+      <a href="https://shopee.co.id/universal-link/product/1152322307/57508790528/?deep_and_web=1&smtt=9&utm_campaign=s1152322307_ss_id_fb00_krawangan1&utm_content=krawanganornamen&utm_medium=seller&utm_source=facebook" target="_blank" rel="noopener" onclick="fbq('track','AddToWishlist',{content_name:'Sticky CTA'})" class="flex-shrink-0 text-center shopee-btn text-white font-black text-[13px] sm:text-sm px-4 sm:px-5 py-2.5 sm:py-2.5 rounded-xl min-h-[44px] flex items-center">
         🛒 BELI DI SHOPEE
       </a>
     </div>
