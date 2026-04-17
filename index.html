@@ -911,11 +911,14 @@ tailwind.config = {
   }
   startCountdown();
 
-  // Scroll animations
+  // Scroll animations — immediately reveal elements already in viewport
+  var animEls = document.querySelectorAll('.fade-up, .slide-left, .slide-right, .scale-in');
+  function isInViewport(el) { var r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; }
+  animEls.forEach(function(el) { if (isInViewport(el)) el.classList.add('visible'); });
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.fade-up, .slide-left, .slide-right, .scale-in').forEach(function(el) { observer.observe(el); });
+  animEls.forEach(function(el) { if (!el.classList.contains('visible')) observer.observe(el); });
 
   // Sticky CTA
   var stickyCta = document.getElementById('stickyCta');
